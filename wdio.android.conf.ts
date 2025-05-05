@@ -13,7 +13,6 @@ export const config: WebdriverIO.Config = {
         'appium:noReset': false,
         'appium:fullReset': true,
         'appium:dontStopAppOnReset': false,
-        'appium:retryBackoffTime': 500,
         'appium:newCommandTimeout': 300,
     }]
 };

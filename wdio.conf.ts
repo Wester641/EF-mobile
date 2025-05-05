@@ -14,14 +14,14 @@ export const config: WebdriverIO.Config = {
         process.env.PLATFORM === "iOS" ? "XCUITest" : "Flutter",
       "appium:deviceName":
         process.env.PLATFORM === "iOS"
-          ? "iPhone Simulator"
+          ? process.env.IOS_DEVICE_NAME
           : "Android Emulator",
       "appium:platformVersion":
-        process.env.PLATFORM === "iOS" ? "16.4" : "12.0",
+        process.env.PLATFORM === "iOS" ? process.env.IOS_PLATFORM_VERSION : "12.0",
       "appium:app":
         process.env.PLATFORM === "iOS"
-          ? "./app/build/ios/iphonesimulator/Runner.app"
-          : "./app/build/app/outputs/flutter-apk/app-debug.apk",
+          ? process.env.APP_IOS_PATH
+          : process.env.APP_ANDROID_PATH,
       "appium:newCommandTimeout": 300,
     },
   ],

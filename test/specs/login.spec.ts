@@ -1,32 +1,30 @@
-// test/specs/login.spec.ts
-
-import { runForPlatform } from "../utils/platform";
-import { byText } from "appium-flutter-finder";
+import { byText, byValueKey, byType } from "appium-flutter-finder";
 
 describe("Login Feature", () => {
   before(async () => {
-    await browser.pause(3000); // Wait for app to load
+    await browser.pause(5000);
     console.log(`Running tests on ${browser.capabilities.platformName}...`);
   });
 
-  beforeEach(async () => {
-    const emailField = await $(byText("Enter the Email"));
-    const passwordField = await $(byText("Password"));
-    const loginButton = await $(byText("Login"));
+  it("should enter credentials and log in", async () => {
+    try {
+      console.log("Finding email field...");
+      await driver.elementClick(byValueKey("email_field"));
+      await driver.execute('flutter:enterText', 'javohir.akhmad@gmail.com')
 
-    await emailField.setValue("zafarzhon77@gmail.com");
-    await passwordField.setValue("zafarzhon77");
-    await loginButton.click();
-  });
+      console.log("Finding password field...");
+      await driver.elementClick(byValueKey("password_field"));
+      await driver.execute('flutter:enterText', 'password')
+      await browser.pause(2000);
 
-  it("should enter to the system, log in", async () => {
-    await runForPlatform({
-      ios: async () => {
-        console.log("Verified login page on iOS");
-      },
-      android: async () => {
-        console.log("Verified login page on Android");
-      },
-    });
+      console.log("Clicking login button...");
+      await driver.elementClick(byText("Login"));
+      await browser.pause(3000);
+
+    } catch (error) {
+      console.error("Test failed with error:", error);
+      await browser.saveScreenshot('./screenshots/error.png');
+      throw error;
+    }
   });
 });

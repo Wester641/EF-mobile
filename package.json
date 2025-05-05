@@ -9,7 +9,9 @@
     "@wdio/spec-reporter": "^9.12.6",
     "appium-flutter-driver": "^2.15.2",
     "appium-flutter-finder": "^0.2.0",
-    "appium-uiautomator2-driver": "^4.2.3"
+    "appium-uiautomator2-driver": "^4.2.3",
+    "appium-xcuitest-driver": "^9.2.4",
+    "dotenv": "^16.5.0"
   },
   "scripts": {
     "test": "wdio run ./wdio.conf.ts",

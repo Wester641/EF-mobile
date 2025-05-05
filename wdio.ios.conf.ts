@@ -1,20 +1,22 @@
 import { config as baseConfig } from './wdio.conf';
 import * as path from 'path';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 // iOS specific configuration
 export const config: WebdriverIO.Config = {
     ...baseConfig,
     capabilities: [{
         platformName: 'iOS',
-        'appium:automationName': 'Flutter',
-        'appium:deviceName': process.env.IOS_DEVICE_NAME || 'iPhone Simulator',
-        'appium:platformVersion': process.env.IOS_PLATFORM_VERSION || '16.4',
-        'appium:app': path.resolve('./app/build/ios/iphonesimulator/Runner.app'),
+        'appium:automationName': 'Flutter', // XCUITest for iOS native integration
+        'appium:deviceName': process.env.IOS_DEVICE_NAME || 'iPhone 16 Pro',
+        'appium:platformVersion': process.env.IOS_PLATFORM_VERSION || '18.0',
+        'appium:app': process.env.APP_IOS_PATH,
         'appium:noReset': false,
-        'appium:fullReset': true,
-        'appium:wdaLaunchTimeout': 80000,
-        'appium:wdaConnectionTimeout': 80000,
-        'appium:retryBackoffTime': 500,
-        'appium:newCommandTimeout': 300,
+        'appium:fullReset': false,
+        'appium:wdaLaunchTimeout': 120000,
+        'appium:wdaConnectionTimeout': 120000,
+        'appium:newCommandTimeout': 300000,
     }]
 };
