@@ -1,4 +1,3 @@
-// test/utils/platform.ts
 export function isIOS() {
     return browser.capabilities.platformName === 'iOS';
 }
