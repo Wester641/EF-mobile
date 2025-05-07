@@ -14,9 +14,12 @@ export const config: WebdriverIO.Config = {
         'appium:platformVersion': process.env.IOS_PLATFORM_VERSION || '18.0',
         'appium:app': process.env.APP_IOS_PATH,
         'appium:noReset': false,
-        'appium:fullReset': false,
-        'appium:wdaLaunchTimeout': 120000,
-        'appium:wdaConnectionTimeout': 120000,
-        'appium:newCommandTimeout': 300000,
+        'appium:fullReset': process.env.FULL_RESET === 'true' || false,
+        'appium:wdaLaunchTimeout': parseInt(process.env.LAUNCH_TIMEOUT || '120000'),
+        'appium:wdaConnectionTimeout': parseInt(process.env.CONNECTION_TIMEOUT || '120000'),
+        'appium:newCommandTimeout': parseInt(process.env.COMMAND_TIMEOUT || '300000'),
+        'appium:usePrebuiltWDA': false,
+        'appium:useNewWDA': true,
+        'appium:shouldUseSingletonTestManager': false,
     }]
 };
