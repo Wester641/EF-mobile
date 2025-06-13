@@ -1,6 +1,6 @@
 import { Selectors } from './Selectors';
 
-describe('Main Screen Elements Verification', () => {
+describe('EMT-2 Verify presence of Dashboard elements after login', () => {
 
   it('Verify the "List of Units" button is displayed', async () => {
     // Expected result: "List of Units" button is visible and labeled correctly
