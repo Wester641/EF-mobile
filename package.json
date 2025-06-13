@@ -2,6 +2,7 @@
   "name": "easy-fleet-test",
   "type": "module",
   "devDependencies": {
+    "@types/chai": "^5.2.2",
     "@wdio/appium-service": "^9.12.7",
     "@wdio/cli": "^9.12.7",
     "@wdio/local-runner": "^9.12.7",
@@ -26,5 +27,8 @@
     "setup:ios": "npm install appium-xcuitest-driver appium-flutter-driver flutter-finder --save-dev",
     "setup:all": "npm run setup:android && npm run setup:ios",
     "doctor": "appium-doctor"
+  },
+  "dependencies": {
+    "chai": "^5.2.0"
   }
 }

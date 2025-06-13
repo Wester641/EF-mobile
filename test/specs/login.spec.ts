@@ -1,30 +1,24 @@
-import { byText, byValueKey, byType } from "appium-flutter-finder";
+import { byValueKey } from 'appium-flutter-finder';
+import { expect } from 'chai';
+import { AuthHelper } from '../helpers/auth-helper';
 
-describe("Login Feature", () => {
-  before(async () => {
-    await browser.pause(5000);
-    console.log(`Running tests on ${browser.capabilities.platformName}...`);
-  });
+describe('EMT-1 Login with valid credentials', () => {
+    before(async () => {
+        await browser.pause(2000);
+        console.log(`Running tests on ${browser.capabilities.platformName}...`);
+        AuthHelper.resetLoginState();
+    });
 
-  it("should enter credentials and log in", async () => {
-    try {
-      console.log("Finding email field...");
-      await driver.elementClick(byValueKey("email_field"));
-      await driver.execute('flutter:enterText', 'javohir.akhmad@gmail.com')
-
-      console.log("Finding password field...");
-      await driver.elementClick(byValueKey("password_field"));
-      await driver.execute('flutter:enterText', 'password')
-      await browser.pause(2000);
-
-      console.log("Clicking login button...");
-      await driver.elementClick(byText("Login"));
-      await browser.pause(3000);
-
-    } catch (error) {
-      console.error("Test failed with error:", error);
-      await browser.saveScreenshot('./screenshots/error.png');
-      throw error;
-    }
-  });
+    it('should be logged in and navigate to Home', async () => {
+        try {
+            console.log('Test setup: should be logged in and navigate to Home');
+            await driver.execute('flutter:waitFor', byValueKey("home_tab"), 10000);
+            const homeTab = byValueKey("home_tab");
+            expect(homeTab).to.exist;
+            console.log('Successfully verified login state');
+        } catch (error) {
+            console.error('Home verification failed:', error);
+            throw error;
+        }
+    });
 });

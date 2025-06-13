@@ -1,9 +1,14 @@
+import { AuthHelper } from './test/helpers/auth-helper'; 
+import { EventEmitter } from 'events';
+
+EventEmitter.defaultMaxListeners = 20;
+
 export const config: WebdriverIO.Config = {
   runner: "local",
   tsConfigPath: "./tsconfig.json",
   port: 4723,
   specs: ["./test/specs/**/*.ts"],
-  exclude: [],
+  exclude: ["./test/specs/**/Selectors.ts"],
   maxInstances: 1,
 
   capabilities: [
@@ -40,7 +45,19 @@ export const config: WebdriverIO.Config = {
   },
 
   // Add 'before' hook to configure Flutter driver
+  beforeTest: async function (test, context) {
+    console.log(`Test setup: ${test.title}`);
+    await AuthHelper.login();
+  },
+
+  afterTest: async function (test, context, { error, result, duration, passed, retries }) {
+    if (error || !passed) {
+      const testName = test.title.replace(/\s+/g, '_');
+      await browser.saveScreenshot(`./screenshots/failed_${testName}_${Date.now()}.png`);
+    }
+  },
+
   before: async function () {
-    // Custom commands can be added here
+    console.log('WebDriver session started');
   },
 };
