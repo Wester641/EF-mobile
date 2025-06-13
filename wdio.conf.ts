@@ -1,4 +1,4 @@
-import { AuthHelper } from './test/helpers/auth-helper'; 
+import { AuthHelper } from './test/helpers/auth-helper';
 import { EventEmitter } from 'events';
 
 EventEmitter.defaultMaxListeners = 20;
