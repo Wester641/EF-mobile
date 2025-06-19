@@ -6,7 +6,7 @@ describe('EMT-25 Users Filter Functionality', () => {
     const listOfUsersButton = await driver.execute('flutter:waitFor', Selectors.listOfUsers, 5000);
     expect(listOfUsersButton).toBeTruthy();
     await driver.elementClick(Selectors.listOfUsers);
-    console.log('List of Units button is visible and clickable');
+    console.log('List of Users button is visible and clickable');
     await driver.pause(3000);  
   });
 
@@ -52,7 +52,7 @@ describe('EMT-25 Users Filter Functionality', () => {
     const maxAttempts = 20;
     for (let i = 0; i < maxAttempts; i++) {
       try {
-        await driver.execute('flutter:waitFor', Selectors.filterOption(i), 5000);
+        await driver.execute('flutter:waitFor', Selectors.filterOption(i), 1000);
         statusCount++;
       } catch (error) {
         console.log("No elements found, error");
@@ -131,7 +131,7 @@ describe('EMT-25 Users Filter Functionality', () => {
     const maxAttempts = 20;
     for (let i = 0; i < maxAttempts; i++) {
       try {
-        await driver.execute('flutter:waitFor', Selectors.filterOption(i), 5000);
+        await driver.execute('flutter:waitFor', Selectors.filterOption(i), 1000);
         roleCount++;
       } catch (error) {
         console.log("No elements found, error");
@@ -210,7 +210,7 @@ describe('EMT-25 Users Filter Functionality', () => {
     const maxAttempts = 20;
     for (let i = 0; i < maxAttempts; i++) {
       try {
-        await driver.execute('flutter:waitFor', Selectors.filterOption(i), 5000);
+        await driver.execute('flutter:waitFor', Selectors.filterOption(i), 1000);
         groupCount++;
       } catch (error) {
         console.log("No elements found, error");
@@ -290,7 +290,7 @@ it('Filter by "Classification" functionality', async () => {
     const maxAttempts = 20;
     for (let i = 0; i < maxAttempts; i++) {
       try {
-        await driver.execute('flutter:waitFor', Selectors.filterOption(i), 5000);
+        await driver.execute('flutter:waitFor', Selectors.filterOption(i), 1000);
         classificationCount++;
       } catch (error) {
         console.log("No elements found, error");
