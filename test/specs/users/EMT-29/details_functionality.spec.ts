@@ -1,6 +1,6 @@
 import { Selectors } from "./Selectors"; 
 
-describe('EMT-28 Verify Add Users Functionality', () => {
+describe('EMT-29 Users Details Functionality', () => {
   it('Pre-conditions', async () => {
     // Navigate to Users List
     const listOfUsersButton = await driver.execute('flutter:waitFor', Selectors.listOfUsers, 5000);
