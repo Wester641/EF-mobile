@@ -8,7 +8,7 @@
     "@wdio/local-runner": "^9.12.7",
     "@wdio/mocha-framework": "^9.12.6",
     "@wdio/spec-reporter": "^9.12.6",
-    "appium-flutter-driver": "^2.15.2",
+    "appium-flutter-driver": "^2.17.0",
     "appium-flutter-finder": "^0.2.0",
     "appium-uiautomator2-driver": "^4.2.3",
     "appium-xcuitest-driver": "^9.2.4",
@@ -29,6 +29,7 @@
     "doctor": "appium-doctor"
   },
   "dependencies": {
+    "appium": "^2.19.0",
     "chai": "^5.2.0"
   }
 }
