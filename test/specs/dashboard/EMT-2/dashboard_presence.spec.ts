@@ -58,6 +58,72 @@ describe('EMT-2 Verify presence of Dashboard elements after login', () => {
     await driver.pause(3000);
   });
 
+  it('Verify "Units" section is displayed and works correctly', async () => {
+    // Expected result: "Units" section is displayed and works correctly 
+    const unitsViewAll = await driver.execute('flutter:waitFor', Selectors.unitsViewAll, 5000);
+    expect(unitsViewAll).toBeTruthy();
+
+    await driver.elementClick(Selectors.unitsViewAll);
+    await driver.pause(3000);
+
+    const unitsTitle = await driver.getElementText(Selectors.appbarTitle);
+    expect(unitsTitle).toBe("Units");
+
+    await driver.elementClick(Selectors.backButton);
+    await driver.pause(3000);
+
+    const firstUnit = await driver.execute('flutter:waitFor', Selectors.unitItem(1), 5000);
+    expect(firstUnit).toBeTruthy();
+
+    await driver.elementClick(Selectors.unitItem(1));
+    await driver.pause(3000);
+    
+    await driver.elementClick(Selectors.backButton);
+    await driver.pause(3000);
+
+    const secondUnit = await driver.execute('flutter:waitFor', Selectors.unitItem(2), 5000);
+    expect(secondUnit).toBeTruthy();
+  
+    await driver.elementClick(Selectors.unitItem(2));
+    await driver.pause(3000);
+  
+    await driver.elementClick(Selectors.backButton);
+    await driver.pause(3000);
+  });
+  
+  it('Verify "Issue" section is displayed and works correctly', async () => {
+    // Expected result: "Issue" section is displayed and works correctly 
+    const issueViewAll = await driver.execute('flutter:waitFor', Selectors.issueViewAll, 5000);
+    expect(issueViewAll).toBeTruthy();
+
+    await driver.elementClick(Selectors.issueViewAll);
+    await driver.pause(3000);
+
+    const unitsTitle = await driver.getElementText(Selectors.appbarTitle);
+    expect(unitsTitle).toBe("Issues");
+
+    await driver.elementClick(Selectors.backButton);
+    await driver.pause(3000);
+
+    const firstIssue = await driver.execute('flutter:waitFor', Selectors.issueItem(1), 5000);
+    expect(firstIssue).toBeTruthy();
+
+    await driver.elementClick(Selectors.issueItem(1));
+    await driver.pause(3000);
+    
+    await driver.elementClick(Selectors.backButton);
+    await driver.pause(3000);
+
+    const secondIssue = await driver.execute('flutter:waitFor', Selectors.issueItem(2), 5000);
+    expect(secondIssue).toBeTruthy();
+  
+    await driver.elementClick(Selectors.issueItem(2));
+    await driver.pause(3000);
+  
+    await driver.elementClick(Selectors.backButton);
+    await driver.pause(3000);
+  });
+
   it('Verify bottom navigation icons are present: Home, Browse', async () => {
     // Expected result: All icons are displayed and clickable
     
