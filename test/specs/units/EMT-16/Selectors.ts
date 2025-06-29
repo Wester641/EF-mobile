@@ -4,7 +4,7 @@ export class Selectors {
     static readonly listOfUnits = byValueKey("list_of_units");
     static readonly unitPageTitle = byText("Units");
     
-    static readonly filterApplyButton = byText("Apply");
+    static readonly filterApplyButton = byText("filter_apply_button");
     static readonly clearFiltersButton = byValueKey("clear_filters")
 
     static readonly unitsFilterByLabel = byText("Labels");
