@@ -1,28 +1,11 @@
-import { byText, byValueKey } from "appium-flutter-finder";
-import { isUserLoggedIn, performLogin } from "../../utils/login-utils";
+import { byText } from "appium-flutter-finder";
+import { Selectors } from "./Selectors";
+import { navigateToUnitsPage } from "../setup";
+
 
 describe("Units Filter Functionality", () => {
-    before(async () => {
-        await browser.pause(5000);
-        console.log(`Running Units Filter tests on ${browser.capabilities.platformName}...`);
-        
-        const isLoggedIn = await isUserLoggedIn();
-        if (!isLoggedIn) {
-            console.log("User not logged in, performing login...");
-            await performLogin();
-        } else {
-            console.log("User already logged in, proceeding to Units page...");
-        }
-    });
-
     it("should navigate to the Units page", async () => {
-        console.log("Navigating to Units page...");
-        await driver.elementClick(byText("List of Units"));
-        await browser.pause(3000);
-            
-        console.log("Verifying Units page is displayed...");
-        await driver.elementClick(byText("Units"));
-        await browser.pause(3000);
+        navigateToUnitsPage();
     });
 
     it("should filter units by Labels dropdown", async () => {
@@ -31,7 +14,7 @@ describe("Units Filter Functionality", () => {
 
             // Click Labels dropdown
             console.log("Clicking Labels dropdown...");
-            await driver.elementClick(byText("Labels"));
+            await driver.elementClick(Selectors.unitsFilterByLabel);
             await browser.pause(2000);
 
             // Select a specific label (assuming "refrigira" from the image)
@@ -39,12 +22,12 @@ describe("Units Filter Functionality", () => {
             await driver.elementClick(byText("Cargo Coordination Unit"));
             await browser.pause(3000);
 
-            await driver.elementClick(byText("Apply"));
+            await driver.elementClick(Selectors.filterApplyButton);
             await browser.pause(10000);
 
             // Clear filters using X button
             console.log("Clearing filters...");
-            await driver.elementClick(byValueKey("clear_filters"));
+            await driver.elementClick(Selectors.clearFiltersButton);
             await browser.pause(3000);
 
         } catch (error) {
@@ -60,7 +43,7 @@ describe("Units Filter Functionality", () => {
 
             // Click Status dropdown
             console.log("Clicking Status dropdown...");
-            await driver.elementClick(byText("Status"));
+            await driver.elementClick(Selectors.unitsFilterByStatus);
             await browser.pause(2000);
 
             // Select Active status
@@ -68,12 +51,12 @@ describe("Units Filter Functionality", () => {
             await driver.elementClick(byText("Active"));
             await browser.pause(3000);
 
-            await driver.elementClick(byText("Apply"));
+            await driver.elementClick(Selectors.filterApplyButton);
             await browser.pause(10000);   
 
             // Clear filters using X button
             console.log("Clearing status filters...");
-            await driver.elementClick(byValueKey("clear_filters"));
+            await driver.elementClick(Selectors.clearFiltersButton);
             await browser.pause(3000);
         } catch (error) {
             console.error("Status filter test failed:", error);
@@ -88,7 +71,7 @@ describe("Units Filter Functionality", () => {
 
             // Click Type dropdown
             console.log("Clicking Type dropdown...");
-            await driver.elementClick(byText("Type"));
+            await driver.elementClick(Selectors.unitsFilterByType);
             await browser.pause(2000);
 
             // Select Truck type
@@ -96,14 +79,13 @@ describe("Units Filter Functionality", () => {
             await driver.elementClick(byText("Semi-Truck"));
             await browser.pause(3000);
 
-            await driver.elementClick(byText("Apply"));
+            await driver.elementClick(Selectors.filterApplyButton);
             await browser.pause(10000);   
 
             // Clear filters using X button
             console.log("Clearing type filters...");
-            await driver.elementClick(byValueKey("clear_filters"));
+            await driver.elementClick(Selectors.clearFiltersButton);
             await browser.pause(3000);
-
         } catch (error) {
             console.error("Type filter test failed:", error);
             await browser.saveScreenshot('./screenshots/type_filter_error.png');

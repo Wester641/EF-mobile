@@ -1,5 +1,6 @@
 import { AuthHelper } from './test/helpers/auth-helper';
 import { EventEmitter } from 'events';
+import { navigateToUnitsPage } from "./test/specs/units/setup";
 
 EventEmitter.defaultMaxListeners = 20;
 
@@ -7,8 +8,13 @@ export const config: WebdriverIO.Config = {
   runner: "local",
   tsConfigPath: "./tsconfig.json",
   port: 4723,
-  specs: ["./test/specs/**/*.ts"],
-  exclude: ["./test/specs/**/Selectors.ts"],
+  specs: [
+    "./test/specs/**/*.ts",
+  ],
+  exclude: [
+    "./test/specs/**/Selectors.ts", 
+    "./test/specs/units/setup.ts"
+  ],
   maxInstances: 1,
 
   capabilities: [
@@ -44,9 +50,9 @@ export const config: WebdriverIO.Config = {
     timeout: 120000,
   },
 
-  // Add 'before' hook to configure Flutter driver
   beforeTest: async function (test, context) {
     console.log(`Test setup: ${test.title}`);
+    console.log('Running login...');
     await AuthHelper.login();
   },
 
