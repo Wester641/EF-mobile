@@ -13,7 +13,7 @@ export class Selectors {
   // Users: Search page
   static readonly searchInput = byValueKey("search_input");
   static readonly noResultMessage = byValueKey("no_result_message");
-  static readonly userSearchList = byValueKey("user_search_list");
+  static readonly userSearchList = byValueKey("search_list");
   
   // Dynamic selectors for list items
   static userSearchItem(index: number) {
