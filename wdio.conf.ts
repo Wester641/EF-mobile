@@ -1,6 +1,5 @@
 import { AuthHelper } from './test/helpers/auth-helper';
 import { EventEmitter } from 'events';
-import { navigateToUnitsPage } from "./test/specs/units/setup";
 
 EventEmitter.defaultMaxListeners = 20;
 
